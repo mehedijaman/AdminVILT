@@ -33,13 +33,14 @@ const logout = () => {
 
 <template>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
+
         <Head :title="title" />
         <!-- <Banner /> -->
         <Header></Header>
         <Sidebar></Sidebar>
 
         <main class="p-4 md:ml-64 h-auto pt-20">
-        <slot></slot>
+            <slot></slot>
         </main>
     </div>
 </template>
