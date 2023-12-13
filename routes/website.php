@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -17,9 +16,11 @@ use App\Http\Controllers\WebsiteController;
 |
 */
 
-require __DIR__.'/website.php';
+Route::get('/', function () {
+    return Inertia::render('Website/Index', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+});
 
-
-Route::group(['prefix' => 'cp'], function(){
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-})->middleware(['auth:sanctum', config('jetstream.auth_session'),'verified',]);
+Route::get('/about', [WebsiteController::class, 'about']);
